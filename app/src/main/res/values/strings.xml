@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Noted</string>
+
+    <string name="dialog_title">About Us</string>
+    <string name="dialog_text">Noted\u00AE is a note taking app created by Paolo A. Delos Reyes, Tadhg McCarthy, and Raphael T. Zapanta. Made on Decemeber 2018. (uWu)</string>
+
+
+</resources>
