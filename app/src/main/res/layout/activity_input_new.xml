@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/editTextData"
         android:layout_width="0dp"
-        android:layout_height="242dp"
+        android:layout_height="272dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -20,6 +20,7 @@
         android:gravity="top"
         android:hint="@string/hint_note"
         android:inputType="textMultiLine"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxPinned" />
@@ -60,6 +61,7 @@
         android:ems="10"
         android:hint="@string/hint_label"
         android:inputType="text"
+        android:paddingLeft="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextData" />
@@ -77,18 +79,21 @@
         android:ems="10"
         android:hint="@string/hint_color"
         android:inputType="text"
+        android:paddingLeft="8dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
 
     <CheckBox
         android:id="@+id/checkBoxPinned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="36dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/holo_orange_light"
+        android:paddingRight="4dp"
         android:text="Pin Note"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

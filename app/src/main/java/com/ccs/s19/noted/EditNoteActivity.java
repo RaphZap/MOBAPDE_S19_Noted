@@ -38,11 +38,14 @@ public class EditNoteActivity extends AppCompatActivity {
         checkBoxPinned = findViewById(R.id.checkBoxPinned);
         editTextGroup = findViewById(R.id.editTextGroup);
         editTextColor = findViewById(R.id.editTextColor);
+
+//        editTextColor.setVisibility(View.INVISIBLE);
+
         db = new myDbAdapter(getApplicationContext());
 
-        int id = getIntent().getIntExtra("IDKEY", 99);
+        int id = getIntent().getIntExtra("IDKEY", -1);
         String text = getIntent().getStringExtra("TEXTKEY");
-        int imageId = getIntent().getIntExtra("IMAGEKEY", 99);
+        int imageId = getIntent().getIntExtra("IMAGEKEY", -1);
         String group = getIntent().getStringExtra("GROUPKEY");
         Boolean isPinned = getIntent().getBooleanExtra("PINKEY", false);
 
@@ -67,12 +70,16 @@ public class EditNoteActivity extends AppCompatActivity {
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                int id = getIntent().getIntExtra("IDKEY", -1);
                 String addedData = "";
                 addedData = editTextData.getText().toString();
+                int imageid = -1;
+                String group = editTextGroup.getText().toString();
+                boolean pin = checkBoxPinned.isChecked();
 
-                // TODO: Edit the note
+                int c = db.updateText(id, addedData, imageid, group, pin);
 
-                Toast.makeText(getApplicationContext(),"Editted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

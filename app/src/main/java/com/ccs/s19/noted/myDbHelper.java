@@ -10,6 +10,7 @@ public class myDbHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "myDatabase";    // Database Name
     protected static final String TABLE_NAME = "NoteTable";   // Table Name
+    protected static final String TABLE_CHECKLIST = "Checklist";   // Table Name
     private static final int DATABASE_Version = 1;    // Database Version
 
     protected static final String UID="_id";     // Column I (Primary Key)
@@ -22,7 +23,9 @@ public class myDbHelper extends SQLiteOpenHelper
             " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+TEXT+" VARCHAR(255) ,"+
             IMAGEID +" ," +COLOR+" ," +ISPINNED+" );";
 
-//    CREATE TABLE myTable (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name VARCHAR(255) ,Password VARCHAR(225));
+//    private static final String CREATE_CHECK_TABLE = "CREATE TABLE "+TABLE_CHECKLIST+
+//            " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+ MyPASSWORD+" VARCHAR(225));";
+
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
     private Context context;
 

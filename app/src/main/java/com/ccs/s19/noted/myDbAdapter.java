@@ -32,12 +32,12 @@ public class myDbAdapter {
 
     public Cursor getAllData() {
         SQLiteDatabase db = myhelper.getReadableDatabase();
-        Cursor res = db.rawQuery( "SELECT * FROM " + myhelper.TABLE_NAME, null );
+        Cursor res = db.rawQuery( "SELECT * FROM " + myhelper.TABLE_NAME +
+                " ORDER BY " +myDbHelper.ISPINNED + " DESC", null );
         return res;
     }
 
-    public String getData()
-    {
+    public String getData() {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID,myDbHelper.TEXT,myDbHelper.IMAGEID,myDbHelper.COLOR,myDbHelper.ISPINNED};
         Cursor cursor = db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
@@ -74,12 +74,15 @@ public class myDbAdapter {
         return cursor;
     }
 
-    public int updateText(String oldText , String newText) {
+    public int updateText(int id , String newText, int imageid, String group, boolean isPin) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT,newText);
-        String[] whereArgs= {oldText};
-        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.TEXT+" = ?",whereArgs );
+        contentValues.put(myDbHelper.IMAGEID,imageid);
+        contentValues.put(myDbHelper.COLOR,group); // group ???
+        contentValues.put(myDbHelper.ISPINNED,isPin);
+        String[] whereArgs= {String.valueOf(id)};
+        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.UID+" = ?",whereArgs );
         return count;
     }
 

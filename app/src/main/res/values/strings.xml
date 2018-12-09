@@ -6,7 +6,7 @@
 
     <string name="menu_newnote">New Note</string>
     <string name="menu_editnote">Edit Note</string>
-    <string name="menu_deletenote">Delete Note</string>
+    <string name="menu_deletenote">Delete ALL Notes!!!</string>
     <string name="menu_sort">Sort By ???</string>
     <string name="menu_settings">Settings (view db)</string>
     <string name="menu_about">About Us</string>
@@ -16,7 +16,9 @@
     <string name="hint_color">Color ?</string>
 
     <string name="checkbox_pin">Pin Note</string>
+    <string name="button_delete">Delete Note</string>
     <string name="button_cancel">Cancel</string>
+    <string name="button_add">+</string>
 
     <string name="alert_delete_title">WARNING</string>
     <string name="alert_delete_text">Are you sure you want to delete this note?</string>

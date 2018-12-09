@@ -10,9 +10,12 @@
 
     <CheckedTextView
         android:id="@+id/checkedTextView_Note"
-        android:layout_width="550dp"
+        android:layout_width="500dp"
         android:layout_height="match_parent"
-        android:layout_margin="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="1"
         android:clickable="false"
         android:text="@string/hint_note" />
@@ -35,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_weight="1"
+            android:background="@android:drawable/editbox_background_normal"
             android:text="@string/hint_label" />
     </LinearLayout>
 

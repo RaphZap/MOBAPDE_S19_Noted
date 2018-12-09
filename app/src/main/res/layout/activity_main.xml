@@ -31,13 +31,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="?android:attr/colorBackground"
-        android:text="+"
+        android:text="@string/button_add"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnCamera"
         android:layout_width="42dp"
         android:layout_height="46dp"
         android:layout_marginEnd="16dp"

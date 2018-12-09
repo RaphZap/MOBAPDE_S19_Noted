@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerArea;
     private NoteAdapter adapter;
     private RecyclerView.LayoutManager manager;
+    private Button addNote;
+    private Button btnCamera;
 
     private myDbAdapter mydb;
 
@@ -30,6 +33,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        addNote = findViewById(R.id.addNote);
+        addNote.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openNewNoteActivity();
+            }
+        });
+
+        btnCamera = findViewById(R.id.btnCamera);
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Your pic has been taken! JK",
+                        Toast.LENGTH_SHORT).show();
+
+                // TODO: Add Camera function here.
+
+            }
+        });
 
         mydb = new myDbAdapter(this);
         recyclerArea = findViewById(R.id.recycler_area);
@@ -41,19 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerArea.setAdapter(adapter);
 
+        // Load data from database and into the recycler view.
         loadData();
-
-//        recyclerArea.addOnItemTouchListener(
-//                new RecyclerItemClickListener(this, recyclerArea ,new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override public void onItemClick(View view, int position) {
-//                        // do whatever
-//                    }
-//
-//                    @Override public void onLongItemClick(View view, int position) {
-//                        // do whatever
-//                    }
-//                })
-//        );
     }
 
 
@@ -69,27 +80,42 @@ public class MainActivity extends AppCompatActivity {
         Toast toast;
         switch (item.getItemId()) {
             case R.id.menu_newNote:
-                Log.d("MENU_DIALOG","NEW NOTE");
-                toast = Toast.makeText(getApplicationContext(),
-                        "Implement NEW NOTE!!!",
-                            Toast.LENGTH_SHORT);
-                toast.show();
+//                Log.d("MENU_DIALOG","NEW NOTE");
+//                toast = Toast.makeText(getApplicationContext(),
+//                        "Implement NEW NOTE!!!",
+//                            Toast.LENGTH_SHORT);
+//                toast.show();
 
                 openNewNoteActivity();
                 return true;
-            case R.id.menu_editNote:
-                Log.d("MENU_DIALOG","EDIT NOTE");
-                toast = Toast.makeText(getApplicationContext(),
-                        "Implement EDIT NOTE!!!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
-                return true;
+//            case R.id.menu_editNote:
+//                Log.d("MENU_DIALOG","EDIT NOTE");
+//                toast = Toast.makeText(getApplicationContext(),
+//                        "Implement EDIT NOTE!!!",
+//                        Toast.LENGTH_SHORT);
+//                toast.show();
+//                return true;
             case R.id.menu_deleteNote:
                 Log.d("MENU_DIALOG","DELETE NOTE");
-                toast = Toast.makeText(getApplicationContext(),
-                        "Implement DELETE NOTE!!!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.alert_delete_title);
+                builder.setMessage(R.string.alert_delete_text);
+                builder.setPositiveButton(R.string.alert_delete_positive, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        int c = mydb.deleteAll();
+                        Log.d("menu_deleteNote","Rows affected: " +c);
+                        Toast.makeText(getApplicationContext(),"Note Deleted! " +c, Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(R.string.alert_delete_negative, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d("btnDelete NOTIFICATION","Bad Rating");
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return true;
             case R.id.menu_sort:
                 Log.d("MENU_DIALOG","SORT NOTE");

@@ -7,10 +7,8 @@
         android:title="@string/menu_newnote" />
     <item
         android:id="@+id/menu_deleteNote"
-        android:title="@string/menu_deletenote" />
-    <item
-        android:id="@+id/menu_editNote"
-        android:title="@string/menu_editnote" />
+        android:title="@string/menu_deletenote"
+        android:background="@android:color/holo_blue_dark" />
     <item
         android:id="@+id/menu_sort"
         android:title="@string/menu_sort" />

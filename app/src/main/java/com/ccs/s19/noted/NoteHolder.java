@@ -17,6 +17,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     private TextView text_note;
     private CheckBox checkBox_pin;
     private CheckedTextView checkedTextView_Note;
+    private TextView textViewLabel;
 
     private MainActivity mainActivity;
 
@@ -27,6 +28,9 @@ public class NoteHolder extends RecyclerView.ViewHolder {
 //        text_note = itemView.findViewById(R.id.text_note);
         checkBox_pin = itemView.findViewById(R.id.checkBoxPinned);
         checkedTextView_Note = itemView.findViewById(R.id.checkedTextView_Note);
+        textViewLabel = itemView.findViewById(R.id.textViewLabel);
+
+        checkBox_pin.setClickable(false);
 
 //        Spinner dropdown = itemView.findViewById(R.id.spinner1);
 //        String[] items = new String[]{"1", "2", "three"};
@@ -42,5 +46,9 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     public void setPin(Boolean pin) {
         checkedTextView_Note.setChecked(pin);
         checkBox_pin.setChecked(pin);
+    }
+
+    public void setGroupLabel(String str) {
+        textViewLabel.setText(str);
     }
 }

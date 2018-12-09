@@ -79,11 +79,10 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
     public void onBindViewHolder(@NonNull NoteHolder noteHolder, int position) {
 //        noteHolder.setIcon(noteList.get(position).getImage());
 
-//        noteHolder.setId(noteList.get(position).getId());
         noteHolder.setTextNote(noteList.get(position).getText());
-//        noteHolder.setImage(noteList.get(position).getImageId());  TODO: set image
+//        noteHolder.setImage(noteList.get(position).getImageId());  // TODO: set image
         noteHolder.setTextNote(noteList.get(position).getText());
-//        noteHolder.setColor(noteList.get(position).getGroup());  TODO: set color
+        noteHolder.setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
         noteHolder.setPin(noteList.get(position).isPinned());
     }
 
