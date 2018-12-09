@@ -4,20 +4,20 @@
 
     <item
         android:id="@+id/menu_newNote"
-        android:title="New Note" />
-    <item
-        android:id="@+id/menu_editNote"
-        android:title="Edit Note" />
+        android:title="@string/menu_newnote" />
     <item
         android:id="@+id/menu_deleteNote"
-        android:title="Delete Note" />
+        android:title="@string/menu_deletenote" />
+    <item
+        android:id="@+id/menu_editNote"
+        android:title="@string/menu_editnote" />
     <item
         android:id="@+id/menu_sort"
-        android:title="Sort By ???" />
+        android:title="@string/menu_sort" />
     <item
         android:id="@+id/menu_settings"
-        android:title="Settings" />
+        android:title="@string/menu_settings" />
     <item
         android:id="@+id/menu_about"
-        android:title="About Us" />
+        android:title="@string/menu_about" />
 </menu>

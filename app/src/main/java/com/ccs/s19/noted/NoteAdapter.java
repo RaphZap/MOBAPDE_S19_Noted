@@ -1,47 +1,90 @@
 package com.ccs.s19.noted;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     private ArrayList<NoteModel> noteList;
+    MainActivity mainAct;
+    RecyclerView mRecyclerView;
 
-    public NoteAdapter() {
+
+    public NoteAdapter(MainActivity main, RecyclerView mRecyclerView) {
         noteList = new ArrayList<NoteModel>();
+        mainAct = main;
+        this.mRecyclerView = mRecyclerView;
 
-        // Create sample notes.
-//        noteList.add(new NoteModel("heyyyyyy"));
-//        noteList.add(new NoteModel("alohaaaa"));
-//        noteList.add(new NoteModel("The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. "));
     }
+
 
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        //(5) An inflater is again used to populate the view. This information can be directly
-        //    taken from a layout.
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.note_row, viewGroup, false);
 
-        //(6) The view created must be given to a holder. The holder will serve as the in-between
-        //    system that interacts with the view.
-        NoteHolder holder = new NoteHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int itemPosition = mRecyclerView.getChildLayoutPosition(v);
+
+                int id = noteList.get(itemPosition).getId();
+                String text = noteList.get(itemPosition).getText();
+                int ImageId = noteList.get(itemPosition).getImageId();
+                String group = noteList.get(itemPosition).getGroup();
+                boolean isPinned = noteList.get(itemPosition).isPinned();
+//                String item = id +" - " +text +" - " +ImageId +" - "
+//                         +group +" - " +isPinned;
+//                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(mainAct.getApplicationContext(), EditNoteActivity.class);
+                intent.putExtra("IDKEY", id);
+                intent.putExtra("IMAGEKEY", text);
+                intent.putExtra("TEXTKEY", ImageId);
+                intent.putExtra("GROUPKEY", group);
+                intent.putExtra("PINKEY", isPinned);
+                mainAct.startActivity(intent);
+            }
+        });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                int itemPosition = mRecyclerView.getChildLayoutPosition(v);
+                String item = noteList.get(itemPosition).getId()+" - "
+                        +noteList.get(itemPosition).getText()+" - "
+                        +noteList.get(itemPosition).getImageId()+" - "
+                        +noteList.get(itemPosition).getGroup()+" - "
+                        +noteList.get(itemPosition).isPinned();
+                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
+        NoteHolder holder = new NoteHolder(view, mainAct);
 
         return holder;
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull NoteHolder noteHolder, int position) {
 //        noteHolder.setIcon(noteList.get(position).getImage());
+
+//        noteHolder.setId(noteList.get(position).getId());
         noteHolder.setTextNote(noteList.get(position).getText());
-//        noteHolder.set
+//        noteHolder.setImage(noteList.get(position).getImageId());  TODO: set image
+        noteHolder.setTextNote(noteList.get(position).getText());
+//        noteHolder.setColor(noteList.get(position).getGroup());  TODO: set color
+        noteHolder.setPin(noteList.get(position).isPinned());
     }
 
     @Override
@@ -49,12 +92,18 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         return noteList.size();
     }
 
-    //(9) Information can be added later on but the notifyItemInserted function must be called to
-    //    tell the system a new piece of information is added.
-    public void addItem(int uid, String text, int img, String grp){
-        noteList.add(new NoteModel(uid, text, img, grp));
+    public void addItem(int uid, String text, int img, String grp, boolean isPinned){
+        noteList.add(new NoteModel(uid, text, img, grp, isPinned));
         notifyItemInserted(noteList.size()-1);
         Log.d("NOTE ADAPTER ACTIVITY", "Added Item!!!");
+    }
+
+    public void clearItems(){
+        while (noteList.size()>0) {
+            noteList.remove(0);
+            notifyItemRemoved(0);
+        }
+        Log.d("NOTE ADAPTER ACTIVITY", "Cleared Items!!!");
     }
 
 }

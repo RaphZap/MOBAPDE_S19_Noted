@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class myDbAdapter {
 
@@ -14,15 +17,16 @@ public class myDbAdapter {
         myhelper = new myDbHelper(context);
     }
 
-    public long insertData(String text)
+    public long insertData(String text, int imageID, String group, Boolean pinme)
     {
-        SQLiteDatabase dbb = myhelper.getWritableDatabase();
+        SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT, text);
+        contentValues.put(myDbHelper.IMAGEID, imageID);
+        contentValues.put(myhelper.COLOR, group);
+        contentValues.put(myhelper.ISPINNED, pinme);
 
-//        contentValues.put(DBHelper.MyPASSWORD, pass);
-        long id = dbb.insert(myDbHelper.TABLE_NAME, null , contentValues);
-
+        long id = db.insert(myDbHelper.TABLE_NAME, null , contentValues);
         return id;
     }
 
@@ -51,12 +55,23 @@ public class myDbAdapter {
         return buffer.toString();
     }
 
-    public  int deleteByID(int id) {
+    public int deleteByID(int id) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(id)};
 
-        int count =db.delete(myDbHelper.TABLE_NAME ,myDbHelper.UID+" = ?",whereArgs);
-        return  count;
+        int count = db.delete(myDbHelper.TABLE_NAME ,myDbHelper.UID+" = ?",whereArgs);
+        return count;
+    }
+
+    public Cursor getDataByID(int id) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + myDbHelper.TABLE_NAME + " WHERE "
+                + myDbHelper.UID + " = " + id;
+
+        Log.d("DB ADAPTER", selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return cursor;
     }
 
     public int updateText(String oldText , String newText) {
@@ -65,6 +80,17 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.TEXT,newText);
         String[] whereArgs= {oldText};
         int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.TEXT+" = ?",whereArgs );
+        return count;
+    }
+
+    // WARNING: this delete all rows!!!
+    public int deleteAll()
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+//        db.execSQL("delete from "+ myDbHelper.TABLE_NAME);
+//        db.execSQL("TRUNCATE table" + TABLE_NAME);
+        int count = db.delete(myDbHelper.TABLE_NAME, null,null);
+        Log.d("myDBAdapter", "rows affected: "+count);
         return count;
     }
 

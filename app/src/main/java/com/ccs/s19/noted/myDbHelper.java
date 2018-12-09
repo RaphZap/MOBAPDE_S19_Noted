@@ -32,7 +32,6 @@ public class myDbHelper extends SQLiteOpenHelper
     }
 
     public void onCreate(SQLiteDatabase db) {
-//        Log.d("HEYYYYYYYYYYYYYYYY", "create: "+CREATE_TABLE);
         try {
             db.execSQL(CREATE_TABLE);
             Toast toast = Toast.makeText(context,
@@ -57,7 +56,6 @@ public class myDbHelper extends SQLiteOpenHelper
 
             db.execSQL(DROP_TABLE);
             onCreate(db);
-
         }catch (Exception e) {
             Toast toast = Toast.makeText(context,
                     "onUpgrade e: "+e,

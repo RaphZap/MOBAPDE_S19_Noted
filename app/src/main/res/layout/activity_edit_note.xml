@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InputNewActivity">
+    tools:context=".EditNoteActivity">
 
     <EditText
         android:id="@+id/editTextData"
         android:layout_width="0dp"
-        android:layout_height="242dp"
+        android:layout_height="279dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:autoText="false"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
         android:gravity="top"
@@ -25,44 +24,39 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBoxPinned" />
 
     <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="69dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@android:drawable/ic_menu_delete"
+        android:text="@string/menu_deletenote"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="42dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:text="Cancel"
+        android:text="@string/button_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCreate" />
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit" />
 
     <Button
-        android:id="@+id/btnCreate"
+        android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="42dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:background="@android:color/holo_blue_bright"
-        android:text="Create Note"
+        android:text="@string/menu_editnote"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextGroup"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:hint="@string/hint_label"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextData" />
 
     <EditText
         android:id="@+id/editTextColor"
@@ -81,6 +75,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
 
+    <EditText
+        android:id="@+id/editTextGroup"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_blue_dark"
+        android:ems="10"
+        android:hint="@string/hint_label"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextData" />
+
     <CheckBox
         android:id="@+id/checkBoxPinned"
         android:layout_width="wrap_content"
@@ -89,22 +100,22 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/holo_orange_light"
-        android:text="Pin Note"
+        android:text="@string/checkbox_pin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--<Spinner-->
-        <!--android:id="@+id/spinner1"-->
-        <!--android:layout_width="321dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:layout_marginTop="24dp"-->
-        <!--android:background="@android:drawable/btn_dropdown"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editTextData" />-->
+    <!--android:id="@+id/spinner1"-->
+    <!--android:layout_width="321dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="16dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:layout_marginStart="16dp"-->
+    <!--android:layout_marginTop="24dp"-->
+    <!--android:background="@android:drawable/btn_dropdown"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/editTextData" />-->
 
 </android.support.constraint.ConstraintLayout>

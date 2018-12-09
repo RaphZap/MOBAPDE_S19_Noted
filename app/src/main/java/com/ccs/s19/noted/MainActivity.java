@@ -21,7 +21,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerArea;
-    private NoteAdapter adapter = new NoteAdapter();
+    private NoteAdapter adapter;
     private RecyclerView.LayoutManager manager;
 
     private myDbAdapter mydb;
@@ -34,39 +34,28 @@ public class MainActivity extends AppCompatActivity {
         mydb = new myDbAdapter(this);
         recyclerArea = findViewById(R.id.recycler_area);
 
+        adapter = new NoteAdapter(this, recyclerArea);
+
         manager = new LinearLayoutManager(this);
         recyclerArea.setLayoutManager(manager);
 
-//        adapter = new NoteAdapter();
         recyclerArea.setAdapter(adapter);
+
         loadData();
+
+//        recyclerArea.addOnItemTouchListener(
+//                new RecyclerItemClickListener(this, recyclerArea ,new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override public void onItemClick(View view, int position) {
+//                        // do whatever
+//                    }
+//
+//                    @Override public void onLongItemClick(View view, int position) {
+//                        // do whatever
+//                    }
+//                })
+//        );
     }
 
-//    public void addItem(View view){
-//        adapter.addItem("hmm",0);
-//    }
-//
-//    public void addUser(View view)
-//    {
-//        String t1 = Name.getText().toString();
-//        if(t1.isEmpty())
-//        {
-//            Message.message(getApplicationContext(),"Enter Both Name and Password");
-//        }
-//        else
-//        {
-//            long id = helper.insertData(t1,t2);
-//            if(id<=0)
-//            {
-//                Message.message(getApplicationContext(),"Insertion Unsuccessful");
-//                Name.setText("");
-//            } else
-//            {
-//                Message.message(getApplicationContext(),"Insertion Successful");
-//                Name.setText("");
-//            }
-//        }
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,10 +100,18 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_settings:
                 Log.d("MENU_DIALOG","SETTINGS");
+
+                String data = mydb.getData();
                 toast = Toast.makeText(getApplicationContext(),
-                        "Implement SETTINGS!!!",
-                        Toast.LENGTH_SHORT);
+                        data,
+                        Toast.LENGTH_LONG);
                 toast.show();
+                Log.d("MENU_DIALOG",data);
+
+//                toast = Toast.makeText(getApplicationContext(),
+//                        "Implement SETTINGS!!!",
+//                        Toast.LENGTH_SHORT);
+//                toast.show();
                 return true;
             case R.id.menu_about:
                 Log.d("MENU_DIALOG","ABOUT US");
@@ -128,11 +125,6 @@ public class MainActivity extends AppCompatActivity {
     private void openNewNoteActivity() {
         Intent intent = new Intent(getApplicationContext(), InputNewActivity.class);
         MainActivity.this.startActivity(intent);
-
-//        String text = getIntent().getStringExtra("NOTEDATA");
-//        Log.d("MAIN","text: " +text);
-//        adapter.addItem(text,0);
-
     }
 
     private void openAboutUsDialog(){
@@ -150,21 +142,23 @@ public class MainActivity extends AppCompatActivity {
         loadData();
     }
 
+    // this always calls the db.
     private void loadData() {
 //        dataList.clear();
+        adapter.clearItems();
         Cursor cursor = mydb.getAllData();
         if (cursor.moveToFirst()) {
             while (cursor.isAfterLast() == false) {
-//                HashMap<String, String> map = new HashMap<String, String>();
-//                map.put(myDbHelper.UID, cursor.getString(cursor.getColumnIndex(myDbHelper.UID)));
-//                map.put(myDbHelper.TEXT, cursor.getString(cursor.getColumnIndex(myDbHelper.TEXT)));
-//                dataList.add(map);
                 int id = cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
                 String txt = cursor.getString(cursor.getColumnIndex(myDbHelper.TEXT));
                 int img = cursor.getInt(cursor.getColumnIndex(myDbHelper.IMAGEID));
                 String grp = cursor.getString(cursor.getColumnIndex(myDbHelper.COLOR));
+                Boolean pin;
+                if (cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)) != null &&
+                        cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)).equalsIgnoreCase("1") )
+                    pin = true; else pin = false;
 
-                adapter.addItem(id, txt, img, grp);
+                adapter.addItem(id, txt, img, grp, pin);
                 cursor.moveToNext();
             }
         }

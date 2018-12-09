@@ -8,22 +8,34 @@
     android:layout_marginTop="12sp"
     android:background="@android:color/holo_orange_light">
 
-    <TextView
-        android:id="@+id/text_note"
-        android:layout_width="230dp"
-        android:layout_height="100sp"
+    <CheckedTextView
+        android:id="@+id/checkedTextView_Note"
+        android:layout_width="550dp"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:gravity="top"
-        android:paddingStart="20dp"
-        android:paddingLeft="20dp"
-        android:text="TextView"
-        android:textSize="16sp" />
+        android:clickable="false"
+        android:text="@string/hint_note" />
 
-    <CheckBox
-        android:id="@+id/checkBoxPinned"
-        android:layout_width="30sp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:checked="false"
-        android:text="Pinned" />
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/checkBoxPinned"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/textViewLabel"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_weight="1"
+            android:text="@string/hint_label" />
+    </LinearLayout>
+
 </LinearLayout>

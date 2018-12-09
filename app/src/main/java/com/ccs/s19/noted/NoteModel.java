@@ -5,16 +5,18 @@ public class NoteModel {
     private String text;
     private int ImageId;
     private String group;
+    private boolean isPinned;
 
     public NoteModel() {
         this.text = "";
     }
 
-    public NoteModel(int id, String t, int imageid, String grp) {
+    public NoteModel(int id, String t, int imageid, String grp, boolean isPin) {
         setId(id);
         setText(t);
         setImageId(imageid);
         setGroup(grp);
+        setPinned(isPin);
     }
 
     public int getImageId() {
@@ -47,5 +49,13 @@ public class NoteModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        isPinned = pinned;
     }
 }
