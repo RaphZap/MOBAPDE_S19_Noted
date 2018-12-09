@@ -2,6 +2,7 @@ package com.ccs.s19.noted;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,9 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         noteList = new ArrayList<NoteModel>();
 
         // Create sample notes.
-        noteList.add(new NoteModel());
-        noteList.add(new NoteModel("alohaaaa"));
-        noteList.add(new NoteModel("The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. "));
+//        noteList.add(new NoteModel("heyyyyyy"));
+//        noteList.add(new NoteModel("alohaaaa"));
+//        noteList.add(new NoteModel("The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. "));
     }
 
     @NonNull
@@ -40,6 +41,7 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
     public void onBindViewHolder(@NonNull NoteHolder noteHolder, int position) {
 //        noteHolder.setIcon(noteList.get(position).getImage());
         noteHolder.setTextNote(noteList.get(position).getText());
+//        noteHolder.set
     }
 
     @Override
@@ -49,9 +51,10 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     //(9) Information can be added later on but the notifyItemInserted function must be called to
     //    tell the system a new piece of information is added.
-    public void addItem(String text, int img){
-        noteList.add(new NoteModel(text));
+    public void addItem(int uid, String text, int img, String grp){
+        noteList.add(new NoteModel(uid, text, img, grp));
         notifyItemInserted(noteList.size()-1);
+        Log.d("NOTE ADAPTER ACTIVITY", "Added Item!!!");
     }
 
 }

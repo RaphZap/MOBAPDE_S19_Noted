@@ -14,6 +14,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     private TextView text_note;
     private CheckBox checkBox_pin;
 
+
     public NoteHolder(@NonNull View itemView) {
         super(itemView);
 

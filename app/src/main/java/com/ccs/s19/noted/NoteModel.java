@@ -10,8 +10,11 @@ public class NoteModel {
         this.text = "";
     }
 
-    public NoteModel(String t) {
+    public NoteModel(int id, String t, int imageid, String grp) {
+        setId(id);
         setText(t);
+        setImageId(imageid);
+        setGroup(grp);
     }
 
     public int getImageId() {
