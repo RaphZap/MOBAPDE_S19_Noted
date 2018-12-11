@@ -38,11 +38,11 @@
 
     <Button
         android:id="@+id/btnCreate"
-        android:layout_width="wrap_content"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/holo_blue_bright"
         android:text="Create Note"
         app:layout_constraintBottom_toBottomOf="parent"
