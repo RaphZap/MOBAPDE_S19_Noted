@@ -18,7 +18,7 @@ public class myDbAdapter {
         myhelper = new myDbHelper(context);
     }
 
-    public long insertData(int type, String text, int imageID, String group, Boolean pinme, String hour, String minute, String second)
+    public long insertData(int type, String text, String imageID, String group, Boolean pinme, String hour, String minute, String second)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -1,7 +1,10 @@
 package com.ccs.s19.noted;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
@@ -13,7 +16,6 @@ class ImgHolder extends RecyclerView.ViewHolder {
     private ImageView img;
     private CheckBox checkBox_pin;
     private TextView textViewLabel;
-    private TextView time;
 
     public ImgHolder(@NonNull View itemView) {
         super(itemView);
@@ -21,7 +23,6 @@ class ImgHolder extends RecyclerView.ViewHolder {
         img = itemView.findViewById(R.id.imageView);
         checkBox_pin = itemView.findViewById(R.id.checkBoxPinned);
         textViewLabel = itemView.findViewById(R.id.textViewLabel);
-        time = itemView.findViewById(R.id.timeView);
 
         checkBox_pin.setClickable(false);
     }
@@ -34,12 +35,18 @@ class ImgHolder extends RecyclerView.ViewHolder {
         textViewLabel.setText(str);
     }
 
-    public void setTime(String hour, String minute, String second){
-        System.out.println(hour + "Inside set time```");
-        time.setText("Time set: " + hour + ":" + minute + ":" + second);
+    public void setImg(String imageId) {
+        img.setImageBitmap(StringToBitMap(imageId));
     }
 
-    public void setImg(int imageId) {
-        img.setImageResource(imageId); //TODO: double check
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte= Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

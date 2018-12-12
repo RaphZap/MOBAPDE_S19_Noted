@@ -70,7 +70,7 @@ public class InputNewActivity extends AppCompatActivity {
                 } else {
                     // add data into the DB. id returns -1 if there's a problem inserting
                     System.out.println(hour + "" + minute + "" + second + " ```");
-                    long id = db.insertData(inputType, addedData,0, group, isPin, hour, minute, second);
+                    long id = db.insertData(inputType, addedData,"", group, isPin, hour, minute, second);
                     if (id > 0) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Note added!",

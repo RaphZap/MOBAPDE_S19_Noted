@@ -11,7 +11,7 @@ public class NoteModel {
     private int id;
     private String text;
     private ArrayList<String> checkList = new ArrayList<>();
-    private int ImageId;
+    private String ImageId;
     private String group;
     private boolean isPinned;
     private String hour;
@@ -37,22 +37,19 @@ public class NoteModel {
         setPinned(isPin);
     }
 
-    public NoteModel(int type, int id, int imageId, String grp, boolean isPin, String hr, String min, String sec) {
+    public NoteModel(int type, int id, String imageId, String grp, boolean isPin) {
         setType(type);
         setId(id);
         setImageId(imageId);
         setGroup(grp);
         setPinned(isPin);
-        setHour(hr);
-        setMinute(min);
-        setSecond(sec);
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return ImageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         ImageId = imageId;
     }
 
