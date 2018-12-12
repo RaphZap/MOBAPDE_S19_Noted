@@ -44,7 +44,23 @@ public class MainActivity extends AppCompatActivity {
         addNote = findViewById(R.id.addNote);
         addNote.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openNewNoteActivity();
+                Log.d("MENU_DIALOG","ADD NOTE");
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle(R.string.alert_add_title);
+                builder.setMessage(R.string.alert_add_text);
+                builder.setPositiveButton(R.string.alert_add_positive, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        openNewNoteActivity();
+                    }
+                });
+                builder.setNegativeButton(R.string.alert_add_negative, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        openNewChecklistActivity();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -180,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void openNewNoteActivity() {
         Intent intent = new Intent(getApplicationContext(), InputNewActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    private void openNewChecklistActivity(){
+        Intent intent = new Intent(getApplicationContext(), InputChecklist.class);
         MainActivity.this.startActivity(intent);
     }
 

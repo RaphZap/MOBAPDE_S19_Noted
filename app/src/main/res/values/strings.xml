@@ -29,4 +29,9 @@
     <string name="alert_delete_positive">Yes, I\'m sure!</string>
     <string name="alert_delete_negative">No, Cancel</string>
 
+    <string name="alert_add_title">Adding Notes</string>
+    <string name="alert_add_text">What type of note?</string>
+    <string name="alert_add_positive">Regular</string>
+    <string name="alert_add_negative">Checklist</string>
+
 </resources>
