@@ -8,17 +8,11 @@
     android:layout_marginRight="8sp"
     android:background="@android:color/holo_orange_light">
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView_Note"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_area_check"
         android:layout_width="500dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_weight="1"
-        android:clickable="false"
-        android:text="@string/hint_note" />
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,12 +35,6 @@
             android:background="@android:color/holo_blue_bright"
             android:text="@string/hint_label" />
 
-        <TextView
-            android:id="@+id/timeView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/hint_time" />
     </LinearLayout>
 
 </LinearLayout>

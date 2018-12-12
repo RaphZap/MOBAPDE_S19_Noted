@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
+class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<NoteModel> noteList;
     MainActivity mainAct;
@@ -28,14 +28,32 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     @NonNull
     @Override
-    public NoteHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View view = inflater.inflate(R.layout.note_row, viewGroup, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        //View view = inflater.inflate(R.layout.note_row, viewGroup, false);
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.note_row, viewGroup, false);
+
+        switch (i){
+            case NoteModel.NOTE_TYPE:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.note_row, viewGroup, false);
+                break;
+                //return new NoteHolder(view);
+            case NoteModel.CHECK_TYPE:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.checklist_row, viewGroup, false);
+                break;
+                //return new CheckListHolder(view);
+            case NoteModel.IMG_TYPE:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.photo_row, viewGroup, false);
+                break;
+                //return new ImgHolder(view);
+        }
 
         view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int itemPosition = mRecyclerView.getChildLayoutPosition(v);
 
+                int type = noteList.get(itemPosition).getType();
                 int id = noteList.get(itemPosition).getId();
                 String text = noteList.get(itemPosition).getText();
                 int ImageId = noteList.get(itemPosition).getImageId();
@@ -49,6 +67,21 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 //                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mainAct.getApplicationContext(), EditNoteActivity.class);
+                switch (type){
+                    case NoteModel.NOTE_TYPE:
+                        intent = new Intent(mainAct.getApplicationContext(), EditNoteActivity.class);
+                        break;
+                    //return new NoteHolder(view);
+                    case NoteModel.CHECK_TYPE:
+                        intent = new Intent(mainAct.getApplicationContext(), EditNoteActivity.class);
+                        break;
+                    //return new CheckListHolder(view);
+                    case NoteModel.IMG_TYPE:
+                        intent = new Intent(mainAct.getApplicationContext(), EditNoteActivity.class);
+                        break;
+                    //return new ImgHolder(view);
+                }
+
                 intent.putExtra("IDKEY", id);
                 intent.putExtra("IMAGEKEY", text);
                 intent.putExtra("TEXTKEY", ImageId);
@@ -77,28 +110,50 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
             }
         });
 
-        NoteHolder holder = new NoteHolder(view, mainAct);
-
-        return holder;
+        switch (i){
+            case NoteModel.NOTE_TYPE:
+                return new NoteHolder(view);
+            case NoteModel.CHECK_TYPE:
+                return new CheckListHolder(view);
+            case NoteModel.IMG_TYPE:
+                return new ImgHolder(view);
+            default:
+                return new NoteHolder(view);
+        }
     }
 
-
-
     @Override
-    public void onBindViewHolder(@NonNull NoteHolder noteHolder, int position) {
-//        noteHolder.setIcon(noteList.get(position).getImage());
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
-        noteHolder.setTextNote(noteList.get(position).getText());
-//        noteHolder.setImage(noteList.get(position).getImageId());  // TODO: set image
-        noteHolder.setTextNote(noteList.get(position).getText());
-        noteHolder.setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
-        noteHolder.setPin(noteList.get(position).isPinned());
-        noteHolder.setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
+        NoteModel object = noteList.get(position);
+
+        if(object != null){
+            switch (object.getType()){
+                case NoteModel.NOTE_TYPE:
+                    ((NoteHolder)holder).setTextNote(noteList.get(position).getText());
+                    ((NoteHolder)holder).setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
+                    ((NoteHolder)holder).setPin(noteList.get(position).isPinned());
+                    ((NoteHolder)holder).setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
+                case NoteModel.CHECK_TYPE:
+                    ((CheckListHolder)holder).setTextNote(noteList.get(position).getText());
+                    ((CheckListHolder)holder).setTextNote(noteList.get(position).getText());
+                    ((CheckListHolder)holder).setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
+                    ((CheckListHolder)holder).setPin(noteList.get(position).isPinned());
+                    ((CheckListHolder)holder).setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
         return noteList.size();
+    }
+
+    public int getItemViewType(int position){
+        if(noteList.get(position).getType() != 0 || noteList.get(position).getType() != 1 || noteList.get(position).getType() != 2)
+            return noteList.get(position).getType();
+        else
+            return 1;
     }
 
     public void addItem(int uid, String text, int img, String grp, boolean isPinned, String hour, String minute, String second){

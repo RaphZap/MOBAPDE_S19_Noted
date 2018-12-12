@@ -3,30 +3,23 @@ package com.ccs.s19.noted;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
-// Manipulate the view here
-public class NoteHolder extends RecyclerView.ViewHolder {
+class ImgHolder extends RecyclerView.ViewHolder {
 
-    private TextView text_note;
+    private ImageView img;
     private CheckBox checkBox_pin;
-    private CheckedTextView checkedTextView_Note;
     private TextView textViewLabel;
     private TextView time;
 
-    public NoteHolder(@NonNull View itemView) {
+    public ImgHolder(@NonNull View itemView) {
         super(itemView);
 
-//        text_note = itemView.findViewById(R.id.text_note);
+        img = itemView.findViewById(R.id.imageView);
         checkBox_pin = itemView.findViewById(R.id.checkBoxPinned);
-        checkedTextView_Note = itemView.findViewById(R.id.checkedTextView_Note);
         textViewLabel = itemView.findViewById(R.id.textViewLabel);
         time = itemView.findViewById(R.id.timeView);
 
@@ -56,4 +49,5 @@ public class NoteHolder extends RecyclerView.ViewHolder {
         System.out.println(hour + "Inside set time```");
         time.setText("Time set: " + hour + ":" + minute + ":" + second);
     }
+
 }

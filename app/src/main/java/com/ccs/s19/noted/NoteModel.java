@@ -1,8 +1,16 @@
 package com.ccs.s19.noted;
 
+import java.util.ArrayList;
+
 public class NoteModel {
+    public static final int NOTE_TYPE=0;
+    public static final int CHECK_TYPE=1;
+    public static final int IMG_TYPE=2;
+
+    private int type;
     private int id;
     private String text;
+    private ArrayList<String> checkList = new ArrayList<>();
     private int ImageId;
     private String group;
     private boolean isPinned;
@@ -10,14 +18,26 @@ public class NoteModel {
     private String minute;
     private String second;
 
-    public NoteModel() {
-        this.text = "";
-    }
-
-    public NoteModel(int id, String t, int imageid, String grp, boolean isPin, String hr, String min, String sec) {
+    public NoteModel(int type, int id, String t, String grp, boolean isPin, String hr, String min, String sec) {
         setId(id);
         setText(t);
-        setImageId(imageid);
+        setGroup(grp);
+        setPinned(isPin);
+        setHour(hr);
+        setMinute(min);
+        setSecond(sec);
+    }
+
+    public NoteModel(int type, int id, ArrayList<String> t, String grp, boolean isPin) {
+        setId(id);
+        setCheckList(t);
+        setGroup(grp);
+        setPinned(isPin);
+    }
+
+    public NoteModel(int type, int id, int imageId, String grp, boolean isPin, String hr, String min, String sec) {
+        setId(id);
+        setImageId(imageId);
         setGroup(grp);
         setPinned(isPin);
         setHour(hr);
@@ -87,5 +107,21 @@ public class NoteModel {
 
     public void setSecond(String second) {
         this.second = second;
+    }
+
+    public ArrayList<String> getCheckList() {
+        return checkList;
+    }
+
+    public void setCheckList(ArrayList<String> checkList) {
+        this.checkList = checkList;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
