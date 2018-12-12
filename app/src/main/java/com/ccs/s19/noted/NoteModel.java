@@ -1,23 +1,27 @@
 package com.ccs.s19.noted;
 
+import java.util.ArrayList;
+
 public class NoteModel {
+    public static final int NOTE_TYPE=0;
+    public static final int CHECK_TYPE=1;
+    public static final int IMG_TYPE=2;
+
+    private int type;
     private int id;
     private String text;
-    private int ImageId;
+    private ArrayList<String> checkList = new ArrayList<>();
+    private String ImageId;
     private String group;
     private boolean isPinned;
     private String hour;
     private String minute;
     private String second;
 
-    public NoteModel() {
-        this.text = "";
-    }
-
-    public NoteModel(int id, String t, int imageid, String grp, boolean isPin, String hr, String min, String sec) {
+    public NoteModel(int type, int id, String t, String grp, boolean isPin, String hr, String min, String sec) {
+        setType(type);
         setId(id);
         setText(t);
-        setImageId(imageid);
         setGroup(grp);
         setPinned(isPin);
         setHour(hr);
@@ -25,11 +29,27 @@ public class NoteModel {
         setSecond(sec);
     }
 
-    public int getImageId() {
+    public NoteModel(int type, int id, ArrayList<String> t, String grp, boolean isPin) {
+        setType(type);
+        setId(id);
+        setCheckList(t);
+        setGroup(grp);
+        setPinned(isPin);
+    }
+
+    public NoteModel(int type, int id, String imageId, String grp, boolean isPin) {
+        setType(type);
+        setId(id);
+        setImageId(imageId);
+        setGroup(grp);
+        setPinned(isPin);
+    }
+
+    public String getImageId() {
         return ImageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         ImageId = imageId;
     }
 
@@ -87,5 +107,21 @@ public class NoteModel {
 
     public void setSecond(String second) {
         this.second = second;
+    }
+
+    public ArrayList<String> getCheckList() {
+        return checkList;
+    }
+
+    public void setCheckList(ArrayList<String> checkList) {
+        this.checkList = checkList;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

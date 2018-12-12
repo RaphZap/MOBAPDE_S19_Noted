@@ -14,13 +14,15 @@ public class myDbAdapter {
 
     public myDbAdapter(Context context)
     {
+        System.out.println("``` inside mydbAdapter");
         myhelper = new myDbHelper(context);
     }
 
-    public long insertData(String text, int imageID, String group, Boolean pinme, String hour, String minute, String second)
+    public long insertData(int type, String text, String imageID, String group, Boolean pinme, String hour, String minute, String second)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(myhelper.TYPE,type);
         contentValues.put(myDbHelper.TEXT, text);
         contentValues.put(myDbHelper.IMAGEID, imageID);
         contentValues.put(myhelper.COLOR, group);
@@ -43,7 +45,7 @@ public class myDbAdapter {
     public String getData() {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID,myDbHelper.TEXT,myDbHelper.IMAGEID,myDbHelper.COLOR,myDbHelper.ISPINNED,
-                            myDbHelper.HOUR, myDbHelper.MINUTE, myDbHelper.SECOND};
+                            myDbHelper.HOUR, myDbHelper.MINUTE, myDbHelper.SECOND,myDbHelper.TYPE};
         Cursor cursor = db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
@@ -56,8 +58,9 @@ public class myDbAdapter {
             String hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
             String minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
             String second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
+            String type = cursor.getString(cursor.getColumnIndex(myDbHelper.TYPE));
 
-            buffer.append(cid +"  " +text+ "  " +imageid+ "  " +color+ "  " +ispinned+ "  " +hour+ "  " +minute+ "  " +second+ " \n");
+            buffer.append(cid +"  " +text+ "  " +imageid+ "  " +color+ "  " +ispinned+ "  " +hour+ "  " +minute+ "  " +second +"  " +type+ " \n");
         }
         return buffer.toString();
     }
@@ -81,7 +84,7 @@ public class myDbAdapter {
         return cursor;
     }
 
-    public int updateText(int id , String newText, int imageid, String group, boolean isPin, String hour, String minute, String second) {
+    public int updateText(int type, int id, String newText, int imageid, String group, boolean isPin, String hour, String minute, String second) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT,newText);
@@ -91,6 +94,7 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.HOUR, hour);
         contentValues.put(myDbHelper.MINUTE, minute);
         contentValues.put(myDbHelper.SECOND, second);
+        contentValues.put(myDbHelper.TYPE, type);
         String[] whereArgs= {String.valueOf(id)};
         int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.UID+" = ?",whereArgs );
         return count;
@@ -106,5 +110,6 @@ public class myDbAdapter {
         Log.d("myDBAdapter", "rows affected: "+count);
         return count;
     }
+
 
 }

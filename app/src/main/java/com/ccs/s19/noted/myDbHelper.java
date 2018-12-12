@@ -1,6 +1,7 @@
 package com.ccs.s19.noted;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -21,10 +22,11 @@ public class myDbHelper extends SQLiteOpenHelper
     protected static final String HOUR = "Hour"; //Column VI
     protected static final String MINUTE = "Minute"; //Column VII
     protected static final String SECOND = "Second"; //Column VIII
+    protected static final String TYPE = "TYPE"; //Column IX
 
     private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
             " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+TEXT+" VARCHAR(255) ,"+
-            IMAGEID +" ," +COLOR+" ," +ISPINNED+" ," +HOUR+" ," +MINUTE+" ," +SECOND+" );";
+            IMAGEID +" ," +COLOR+" ," +ISPINNED+" ," +HOUR+" ," +MINUTE+" ," +SECOND+" ," +TYPE+" );";
 
 //    private static final String CREATE_CHECK_TABLE = "CREATE TABLE "+TABLE_CHECKLIST+
 //            " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+ MyPASSWORD+" VARCHAR(225));";
@@ -69,4 +71,5 @@ public class myDbHelper extends SQLiteOpenHelper
             toast.show();
         }
     }
+
 }

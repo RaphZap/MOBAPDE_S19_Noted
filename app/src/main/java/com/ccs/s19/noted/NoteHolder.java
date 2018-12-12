@@ -21,11 +21,8 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     private TextView textViewLabel;
     private TextView time;
 
-    private MainActivity mainActivity;
-
-    public NoteHolder(@NonNull View itemView, MainActivity mainAct) {
+    public NoteHolder(@NonNull View itemView) {
         super(itemView);
-        mainActivity = mainAct;
 
 //        text_note = itemView.findViewById(R.id.text_note);
         checkBox_pin = itemView.findViewById(R.id.checkBoxPinned);
