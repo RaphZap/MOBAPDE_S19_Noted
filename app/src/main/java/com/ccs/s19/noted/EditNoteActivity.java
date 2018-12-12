@@ -69,6 +69,8 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         }
         editTextData.setText(text);
+        editTextGroup.setText(group);
+        checkBoxPinned.setChecked(isPinned);
 //        String item = id +" - " +text +" - " +imageId +" - "
 //                +group +" - " +isPinned+" - "+hour+" - " +minute+ " - " +second;
 //        Toast.makeText(this, item, Toast.LENGTH_LONG).show();
