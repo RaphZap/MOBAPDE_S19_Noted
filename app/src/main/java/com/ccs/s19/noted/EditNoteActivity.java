@@ -21,9 +21,6 @@ public class EditNoteActivity extends AppCompatActivity {
     private Button btnDelete;
     private CheckBox checkBoxPinned;
     private EditText editTextGroup;
-    private EditText inputtedHour;
-    private EditText inputtedMinute;
-    private EditText inputtedSecond;
 
     // Miscellaneous
     private myDbAdapter db;
@@ -39,9 +36,6 @@ public class EditNoteActivity extends AppCompatActivity {
         btnDelete = findViewById(R.id.btnDelete);
         checkBoxPinned = findViewById(R.id.checkBoxPinned);
         editTextGroup = findViewById(R.id.editTextGroup);
-        inputtedHour = findViewById(R.id.inputHour);
-        inputtedMinute = findViewById(R.id.inputMinute);
-        inputtedSecond = findViewById(R.id.inputSeconds);
 //        editTextColor.setVisibility(View.INVISIBLE);
 
         db = new myDbAdapter(getApplicationContext());
@@ -85,24 +79,11 @@ public class EditNoteActivity extends AppCompatActivity {
                 int type = NoteModel.NOTE_TYPE;
                 String addedData = "";
                 addedData = editTextData.getText().toString();
-                int imageid = -1;
+                String imageId = getIntent().getStringExtra("IMAGEKEY");
                 String group = editTextGroup.getText().toString();
                 boolean pin = checkBoxPinned.isChecked();
-                String hour = inputtedHour.getText().toString();
-                String minute = inputtedMinute.getText().toString();
-                String second = inputtedSecond.getText().toString();
 
-                if(hour.isEmpty()){
-                    hour = "0";
-                }
-                if(minute.isEmpty()){
-                    minute = "0";
-                }
-                if(second.isEmpty()){
-                    second = "0";
-                }
-
-                int c = db.updateText(type, id, addedData, imageid, group, pin, hour, minute, second);
+                int c = db.updateText(type, id, addedData, imageId, group, pin, "0", "0", "0");
 
                 Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();

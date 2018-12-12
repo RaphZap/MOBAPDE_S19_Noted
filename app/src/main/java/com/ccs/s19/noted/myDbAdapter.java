@@ -84,7 +84,7 @@ public class myDbAdapter {
         return cursor;
     }
 
-    public int updateText(int type, int id, String newText, int imageid, String group, boolean isPin, String hour, String minute, String second) {
+    public int updateText(int type, int id, String newText, String imageid, String group, boolean isPin, String hour, String minute, String second) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT,newText);

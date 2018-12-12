@@ -83,8 +83,8 @@ class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
 
                 intent.putExtra("IDKEY", id);
-                intent.putExtra("IMAGEKEY", text);
-                intent.putExtra("TEXTKEY", ImageId);
+                intent.putExtra("IMAGEKEY", ImageId);
+                intent.putExtra("TEXTKEY", text);
                 intent.putExtra("GROUPKEY", group);
                 intent.putExtra("PINKEY", isPinned);
                 intent.putExtra("HOUR", hour);

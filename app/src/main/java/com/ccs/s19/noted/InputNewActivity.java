@@ -188,8 +188,8 @@ public class InputNewActivity extends AppCompatActivity {
 
         //(3) Various notification attributes can be declared here. Note that ones that are important:
         builder.setSmallIcon(R.drawable.ic_launcher_background);
-        builder.setContentTitle(editTextData.getText().toString());
-        builder.setContentText(editTextData.getText().toString());
+        builder.setContentTitle("Noted Application");
+        builder.setContentText("One of your notes needs NOTES-icing");
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         //(4) These attributes are still important though not required to execute
