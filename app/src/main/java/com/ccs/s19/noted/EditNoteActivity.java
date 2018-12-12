@@ -76,16 +76,25 @@ public class EditNoteActivity extends AppCompatActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int id = getIntent().getIntExtra("IDKEY", -1);
-                int type = NoteModel.NOTE_TYPE;
+                Cursor cur = db.getDataByID(id);
+                String img = "";
+                if (cur.moveToFirst()) {
+                    while (cur.isAfterLast() == false) {
+                        img = cur.getString(cur.getColumnIndex(myDbHelper.IMAGEID));
+                        cur.moveToNext();
+                    }
+                }
+                Toast.makeText(getApplicationContext(),"img: ! "+img, Toast.LENGTH_SHORT).show();
+                int type = getIntent().getIntExtra("TYPE", 0);
+//                int type = type;
                 String addedData = "";
                 addedData = editTextData.getText().toString();
-                String imageId = getIntent().getStringExtra("IMAGEKEY");
                 String group = editTextGroup.getText().toString();
                 boolean pin = checkBoxPinned.isChecked();
 
-                int c = db.updateText(type, id, addedData, imageId, group, pin, "0", "0", "0");
+                int c = db.updateText(type, id, addedData, img, group, pin, "0", "0", "0");
 
-                Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

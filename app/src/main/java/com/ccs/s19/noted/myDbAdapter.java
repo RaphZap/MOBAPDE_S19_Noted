@@ -88,7 +88,7 @@ public class myDbAdapter {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT,newText);
-        contentValues.put(myDbHelper.IMAGEID,imageid);
+//        contentValues.put(myDbHelper.IMAGEID,imageid);
         contentValues.put(myDbHelper.COLOR,group); // group ???
         contentValues.put(myDbHelper.ISPINNED,isPin);
         contentValues.put(myDbHelper.HOUR, hour);

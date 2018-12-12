@@ -90,6 +90,7 @@ class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("HOUR", hour);
                 intent.putExtra("MINUTE", minute);
                 intent.putExtra("SECOND", second);
+                intent.putExtra("TYPE", type);
                 mainAct.startActivity(intent);
             }
         });

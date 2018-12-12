@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
 
                 // Close activity
-                finish();
+//                finish();
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "ERROR! not addded!",
