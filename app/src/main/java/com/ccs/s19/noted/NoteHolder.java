@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -18,6 +19,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     private CheckBox checkBox_pin;
     private CheckedTextView checkedTextView_Note;
     private TextView textViewLabel;
+    private TextView time;
 
     private MainActivity mainActivity;
 
@@ -29,6 +31,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
         checkBox_pin = itemView.findViewById(R.id.checkBoxPinned);
         checkedTextView_Note = itemView.findViewById(R.id.checkedTextView_Note);
         textViewLabel = itemView.findViewById(R.id.textViewLabel);
+        time = itemView.findViewById(R.id.timeView);
 
         checkBox_pin.setClickable(false);
 
@@ -50,5 +53,10 @@ public class NoteHolder extends RecyclerView.ViewHolder {
 
     public void setGroupLabel(String str) {
         textViewLabel.setText(str);
+    }
+
+    public void setTime(String hour, String minute, String second){
+        System.out.println(hour + "Inside set time```");
+        time.setText("Time set: " + hour + ":" + minute + ":" + second);
     }
 }

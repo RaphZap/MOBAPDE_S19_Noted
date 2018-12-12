@@ -18,10 +18,13 @@ public class myDbHelper extends SQLiteOpenHelper
     protected static final String IMAGEID= "ImageID";    // Column III
     protected static final String COLOR= "COLOR";    // Column IV
     protected static final String ISPINNED= "IsPinned";    // Column V
+    protected static final String HOUR = "Hour"; //Column VI
+    protected static final String MINUTE = "Minute"; //Column VII
+    protected static final String SECOND = "Second"; //Column VIII
 
     private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
             " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+TEXT+" VARCHAR(255) ,"+
-            IMAGEID +" ," +COLOR+" ," +ISPINNED+" );";
+            IMAGEID +" ," +COLOR+" ," +ISPINNED+" ," +HOUR+" ," +MINUTE+" ," +SECOND+" );";
 
 //    private static final String CREATE_CHECK_TABLE = "CREATE TABLE "+TABLE_CHECKLIST+
 //            " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+ MyPASSWORD+" VARCHAR(225));";

@@ -41,6 +41,9 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
                 int ImageId = noteList.get(itemPosition).getImageId();
                 String group = noteList.get(itemPosition).getGroup();
                 boolean isPinned = noteList.get(itemPosition).isPinned();
+                String hour = noteList.get(itemPosition).getHour();
+                String minute = noteList.get(itemPosition).getMinute();
+                String second = noteList.get(itemPosition).getSecond();
 //                String item = id +" - " +text +" - " +ImageId +" - "
 //                         +group +" - " +isPinned;
 //                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
@@ -51,6 +54,9 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
                 intent.putExtra("TEXTKEY", ImageId);
                 intent.putExtra("GROUPKEY", group);
                 intent.putExtra("PINKEY", isPinned);
+                intent.putExtra("HOUR", hour);
+                intent.putExtra("MINUTE", minute);
+                intent.putExtra("SECOND", second);
                 mainAct.startActivity(intent);
             }
         });
@@ -62,7 +68,10 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
                         +noteList.get(itemPosition).getText()+" - "
                         +noteList.get(itemPosition).getImageId()+" - "
                         +noteList.get(itemPosition).getGroup()+" - "
-                        +noteList.get(itemPosition).isPinned();
+                        +noteList.get(itemPosition).isPinned()+" - "
+                        +noteList.get(itemPosition).getHour()+" - "
+                        +noteList.get(itemPosition).getMinute()+" - "
+                        +noteList.get(itemPosition).getSecond();
                 Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
                 return false;
             }
@@ -84,6 +93,7 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         noteHolder.setTextNote(noteList.get(position).getText());
         noteHolder.setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
         noteHolder.setPin(noteList.get(position).isPinned());
+        noteHolder.setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
     }
 
     @Override
@@ -91,8 +101,8 @@ class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         return noteList.size();
     }
 
-    public void addItem(int uid, String text, int img, String grp, boolean isPinned){
-        noteList.add(new NoteModel(uid, text, img, grp, isPinned));
+    public void addItem(int uid, String text, int img, String grp, boolean isPinned, String hour, String minute, String second){
+        noteList.add(new NoteModel(uid, text, img, grp, isPinned, hour, minute, second));
         notifyItemInserted(noteList.size()-1);
         Log.d("NOTE ADAPTER ACTIVITY", "Added Item!!!");
     }

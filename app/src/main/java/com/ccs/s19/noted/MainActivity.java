@@ -183,8 +183,13 @@ public class MainActivity extends AppCompatActivity {
                 if (cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)) != null &&
                         cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)).equalsIgnoreCase("1") )
                     pin = true; else pin = false;
+                String hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
+                String minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
+                String second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
 
-                adapter.addItem(id, txt, img, grp, pin);
+                System.out.println(hour + "" + minute + "" + second + "```Inside load data");
+
+                adapter.addItem(id, txt, img, grp, pin, hour, minute, second);
                 cursor.moveToNext();
             }
         }

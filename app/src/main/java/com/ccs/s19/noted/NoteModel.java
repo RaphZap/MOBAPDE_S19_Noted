@@ -6,17 +6,23 @@ public class NoteModel {
     private int ImageId;
     private String group;
     private boolean isPinned;
+    private String hour;
+    private String minute;
+    private String second;
 
     public NoteModel() {
         this.text = "";
     }
 
-    public NoteModel(int id, String t, int imageid, String grp, boolean isPin) {
+    public NoteModel(int id, String t, int imageid, String grp, boolean isPin, String hr, String min, String sec) {
         setId(id);
         setText(t);
         setImageId(imageid);
         setGroup(grp);
         setPinned(isPin);
+        setHour(hr);
+        setMinute(min);
+        setSecond(sec);
     }
 
     public int getImageId() {
@@ -57,5 +63,29 @@ public class NoteModel {
 
     public void setPinned(boolean pinned) {
         isPinned = pinned;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    public String getMinute() {
+        return minute;
+    }
+
+    public void setMinute(String minute) {
+        this.minute = minute;
+    }
+
+    public String getSecond() {
+        return second;
+    }
+
+    public void setSecond(String second) {
+        this.second = second;
     }
 }

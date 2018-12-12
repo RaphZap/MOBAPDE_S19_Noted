@@ -17,7 +17,7 @@ public class myDbAdapter {
         myhelper = new myDbHelper(context);
     }
 
-    public long insertData(String text, int imageID, String group, Boolean pinme)
+    public long insertData(String text, int imageID, String group, Boolean pinme, String hour, String minute, String second)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -25,6 +25,9 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.IMAGEID, imageID);
         contentValues.put(myhelper.COLOR, group);
         contentValues.put(myhelper.ISPINNED, pinme);
+        contentValues.put(myhelper.HOUR,hour);
+        contentValues.put(myhelper.MINUTE,minute);
+        contentValues.put(myhelper.SECOND,second);
 
         long id = db.insert(myDbHelper.TABLE_NAME, null , contentValues);
         return id;
@@ -39,7 +42,8 @@ public class myDbAdapter {
 
     public String getData() {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] columns = {myDbHelper.UID,myDbHelper.TEXT,myDbHelper.IMAGEID,myDbHelper.COLOR,myDbHelper.ISPINNED};
+        String[] columns = {myDbHelper.UID,myDbHelper.TEXT,myDbHelper.IMAGEID,myDbHelper.COLOR,myDbHelper.ISPINNED,
+                            myDbHelper.HOUR, myDbHelper.MINUTE, myDbHelper.SECOND};
         Cursor cursor = db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
@@ -49,8 +53,11 @@ public class myDbAdapter {
             String imageid =cursor.getString(cursor.getColumnIndex(myDbHelper.IMAGEID));
             String color =cursor.getString(cursor.getColumnIndex(myDbHelper.COLOR));
             String ispinned =cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED));
+            String hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
+            String minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
+            String second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
 
-            buffer.append(cid +"  " +text +"  " +imageid+"  " +color+"  " +ispinned +" \n");
+            buffer.append(cid +"  " +text+ "  " +imageid+ "  " +color+ "  " +ispinned+ "  " +hour+ "  " +minute+ "  " +second+ " \n");
         }
         return buffer.toString();
     }
@@ -74,13 +81,16 @@ public class myDbAdapter {
         return cursor;
     }
 
-    public int updateText(int id , String newText, int imageid, String group, boolean isPin) {
+    public int updateText(int id , String newText, int imageid, String group, boolean isPin, String hour, String minute, String second) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TEXT,newText);
         contentValues.put(myDbHelper.IMAGEID,imageid);
         contentValues.put(myDbHelper.COLOR,group); // group ???
         contentValues.put(myDbHelper.ISPINNED,isPin);
+        contentValues.put(myDbHelper.HOUR, hour);
+        contentValues.put(myDbHelper.MINUTE, minute);
+        contentValues.put(myDbHelper.SECOND, second);
         String[] whereArgs= {String.valueOf(id)};
         int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.UID+" = ?",whereArgs );
         return count;

@@ -18,7 +18,9 @@ public class InputNewActivity extends AppCompatActivity {
     private Button btnCancel;
     private CheckBox checkBoxPinned;
     private EditText editTextGroup;
-    private EditText editTextColor;
+    private EditText inputtedHour;
+    private EditText inputtedMinute;
+    private EditText inputtedSecond;
 
 //    private NoteAdapter adapter = new NoteAdapter(this.getApplicationContext());
     private myDbAdapter db;
@@ -33,17 +35,31 @@ public class InputNewActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         checkBoxPinned = findViewById(R.id.checkBoxPinned);
         editTextGroup = findViewById(R.id.editTextGroup);
-        editTextColor = findViewById(R.id.editTextColor);
+        inputtedHour = findViewById(R.id.inputHour);
+        inputtedMinute = findViewById(R.id.inputMinute);
+        inputtedSecond = findViewById(R.id.inputSeconds);
+
 
         db = new myDbAdapter(getApplicationContext());
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String addedData = "";
-                addedData = editTextData.getText().toString();
+                String addedData = editTextData.getText().toString();
                 String group = editTextGroup.getText().toString();
-                String color = editTextColor.getText().toString();
                 Boolean isPin = checkBoxPinned.isChecked();
+                String hour = inputtedHour.getText().toString();
+                String minute = inputtedMinute.getText().toString();
+                String second = inputtedSecond.getText().toString();
+
+                if(hour.isEmpty()){
+                    hour = "0";
+                }
+                if(minute.isEmpty()){
+                    minute = "0";
+                }
+                if(second.isEmpty()){
+                    second = "0";
+                }
 
                 if (addedData.equalsIgnoreCase("")) {
                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -52,7 +68,8 @@ public class InputNewActivity extends AppCompatActivity {
                     toast.show();
                 } else {
                     // add data into the DB. id returns -1 if there's a problem inserting
-                    long id = db.insertData(addedData,0, color, isPin);
+                    System.out.println(hour + "" + minute + "" + second + " ```");
+                    long id = db.insertData(addedData,0, group, isPin, hour, minute, second);
                     if (id > 0) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Note added!",

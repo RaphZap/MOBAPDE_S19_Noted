@@ -7,6 +7,41 @@
     tools:context=".EditNoteActivity">
 
     <EditText
+        android:id="@+id/inputMinute"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hint_minute"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/inputHour"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
+
+    <EditText
+        android:id="@+id/inputSeconds"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hint_second"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/inputMinute"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
+
+    <EditText
+        android:id="@+id/inputHour"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hint_hour"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
+
+    <EditText
         android:id="@+id/editTextData"
         android:layout_width="0dp"
         android:layout_height="279dp"
@@ -28,28 +63,25 @@
         android:id="@+id/btnDelete"
         android:layout_width="108dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:layout_marginBottom="42dp"
         android:background="@android:color/holo_red_light"
         android:text="@string/button_delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel" />
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="104dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/darker_gray"
         android:text="@string/button_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-        app:layout_constraintStart_toEndOf="@+id/btnDelete" />
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit" />
 
     <Button
         android:id="@+id/btnEdit"
@@ -62,25 +94,6 @@
         android:text="@string/menu_editnote"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextColor"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:hint="@string/hint_color"
-        android:inputType="text"
-        android:paddingLeft="8dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
 
     <EditText
         android:id="@+id/editTextGroup"
@@ -112,6 +125,18 @@
         android:text="@string/checkbox_pin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Time:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
 
     <!--<Spinner-->
     <!--android:id="@+id/spinner1"-->

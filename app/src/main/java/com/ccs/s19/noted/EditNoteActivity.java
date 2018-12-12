@@ -21,7 +21,9 @@ public class EditNoteActivity extends AppCompatActivity {
     private Button btnDelete;
     private CheckBox checkBoxPinned;
     private EditText editTextGroup;
-    private EditText editTextColor;
+    private EditText inputtedHour;
+    private EditText inputtedMinute;
+    private EditText inputtedSecond;
 
     // Miscellaneous
     private myDbAdapter db;
@@ -37,8 +39,9 @@ public class EditNoteActivity extends AppCompatActivity {
         btnDelete = findViewById(R.id.btnDelete);
         checkBoxPinned = findViewById(R.id.checkBoxPinned);
         editTextGroup = findViewById(R.id.editTextGroup);
-        editTextColor = findViewById(R.id.editTextColor);
-
+        inputtedHour = findViewById(R.id.inputHour);
+        inputtedMinute = findViewById(R.id.inputMinute);
+        inputtedSecond = findViewById(R.id.inputSeconds);
 //        editTextColor.setVisibility(View.INVISIBLE);
 
         db = new myDbAdapter(getApplicationContext());
@@ -48,6 +51,9 @@ public class EditNoteActivity extends AppCompatActivity {
         int imageId = getIntent().getIntExtra("IMAGEKEY", -1);
         String group = getIntent().getStringExtra("GROUPKEY");
         Boolean isPinned = getIntent().getBooleanExtra("PINKEY", false);
+        String hour = getIntent().getStringExtra("HOUR");
+        String minute = getIntent().getStringExtra("MINUTE");
+        String second = getIntent().getStringExtra("SECOND");
 
         Cursor cursor = db.getDataByID(id);
         if (cursor.moveToFirst()) {
@@ -59,13 +65,16 @@ public class EditNoteActivity extends AppCompatActivity {
                 if (cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)) != null &&
                         cursor.getString(cursor.getColumnIndex(myDbHelper.ISPINNED)).equalsIgnoreCase("1") )
                     isPinned = true; else isPinned = false;
+                hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
+                minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
+                second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
 
                 cursor.moveToNext();
             }
         }
         editTextData.setText(text);
         String item = id +" - " +text +" - " +imageId +" - "
-                +group +" - " +isPinned;
+                +group +" - " +isPinned+" - "+hour+" - " +minute+ " - " +second;
         Toast.makeText(this, item, Toast.LENGTH_LONG).show();
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +85,21 @@ public class EditNoteActivity extends AppCompatActivity {
                 int imageid = -1;
                 String group = editTextGroup.getText().toString();
                 boolean pin = checkBoxPinned.isChecked();
+                String hour = inputtedHour.getText().toString();
+                String minute = inputtedMinute.getText().toString();
+                String second = inputtedSecond.getText().toString();
 
-                int c = db.updateText(id, addedData, imageid, group, pin);
+                if(hour.isEmpty()){
+                    hour = "0";
+                }
+                if(minute.isEmpty()){
+                    minute = "0";
+                }
+                if(second.isEmpty()){
+                    second = "0";
+                }
+
+                int c = db.updateText(id, addedData, imageid, group, pin, hour, minute, second);
 
                 Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();
