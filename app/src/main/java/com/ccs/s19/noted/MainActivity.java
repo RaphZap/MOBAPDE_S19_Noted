@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 String minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
                 String second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
 
-                System.out.println(hour + "" + minute + "" + second + "```Inside load data");
+                System.out.println(hour + "" + minute + "" + second);
 
                 adapter.addItem(id, txt, img, grp, pin, hour, minute, second);
                 cursor.moveToNext();
@@ -215,4 +215,5 @@ public class MainActivity extends AppCompatActivity {
 //            return true;
 //        }});
     }
+
 }

@@ -7,41 +7,6 @@
     tools:context=".EditNoteActivity">
 
     <EditText
-        android:id="@+id/inputMinute"
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/hint_minute"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/inputHour"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
-
-    <EditText
-        android:id="@+id/inputSeconds"
-        android:layout_width="81dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/hint_second"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/inputMinute"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
-
-    <EditText
-        android:id="@+id/inputHour"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/hint_hour"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
-
-    <EditText
         android:id="@+id/editTextData"
         android:layout_width="0dp"
         android:layout_height="279dp"
@@ -125,18 +90,6 @@
         android:text="@string/checkbox_pin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Time:"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGroup" />
 
     <!--<Spinner-->
     <!--android:id="@+id/spinner1"-->
