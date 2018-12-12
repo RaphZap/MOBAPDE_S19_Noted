@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MENU_DIALOG","DELETE NOTE");
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.alert_delete_title);
-                builder.setMessage(R.string.alert_delete_text);
+                builder.setMessage(R.string.alert_delete_all);
                 builder.setPositiveButton(R.string.alert_delete_positive, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         int c = mydb.deleteAll();
