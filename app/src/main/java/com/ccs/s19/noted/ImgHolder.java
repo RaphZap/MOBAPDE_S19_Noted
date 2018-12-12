@@ -24,20 +24,9 @@ class ImgHolder extends RecyclerView.ViewHolder {
         time = itemView.findViewById(R.id.timeView);
 
         checkBox_pin.setClickable(false);
-
-//        Spinner dropdown = itemView.findViewById(R.id.spinner1);
-//        String[] items = new String[]{"1", "2", "three"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(mainActivity , android.R.layout.simple_spinner_dropdown_item, items);
-//        dropdown.setAdapter(adapter);
-    }
-
-    public void setTextNote(String str){
-//        text_note.setText(str);
-        checkedTextView_Note.setText(str);
     }
 
     public void setPin(Boolean pin) {
-        checkedTextView_Note.setChecked(pin);
         checkBox_pin.setChecked(pin);
     }
 
@@ -50,4 +39,7 @@ class ImgHolder extends RecyclerView.ViewHolder {
         time.setText("Time set: " + hour + ":" + minute + ":" + second);
     }
 
+    public void setImg(int imageId) {
+        img.setImageResource(imageId); //TODO: double check
+    }
 }

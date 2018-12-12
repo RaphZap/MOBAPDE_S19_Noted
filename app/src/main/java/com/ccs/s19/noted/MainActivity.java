@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         loadData();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -186,10 +185,11 @@ public class MainActivity extends AppCompatActivity {
                 String hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
                 String minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
                 String second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
+                int type = cursor.getInt(cursor.getColumnIndex(myDbHelper.TYPE));
 
                 System.out.println(hour + "" + minute + "" + second + "```Inside load data");
 
-                adapter.addItem(id, txt, img, grp, pin, hour, minute, second);
+                adapter.addItem(type, id, txt, img, grp, pin, hour, minute, second);
                 cursor.moveToNext();
             }
         }

@@ -54,6 +54,7 @@ public class EditNoteActivity extends AppCompatActivity {
         String hour = getIntent().getStringExtra("HOUR");
         String minute = getIntent().getStringExtra("MINUTE");
         String second = getIntent().getStringExtra("SECOND");
+        int type = getIntent().getIntExtra("TYPE", -1);
 
         Cursor cursor = db.getDataByID(id);
         if (cursor.moveToFirst()) {
@@ -68,6 +69,7 @@ public class EditNoteActivity extends AppCompatActivity {
                 hour = cursor.getString(cursor.getColumnIndex(myDbHelper.HOUR));
                 minute = cursor.getString(cursor.getColumnIndex(myDbHelper.MINUTE));
                 second = cursor.getString(cursor.getColumnIndex(myDbHelper.SECOND));
+                type = cursor.getInt(cursor.getColumnIndex(myDbHelper.TYPE));
 
                 cursor.moveToNext();
             }
@@ -80,6 +82,7 @@ public class EditNoteActivity extends AppCompatActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int id = getIntent().getIntExtra("IDKEY", -1);
+                int type = NoteModel.NOTE_TYPE;
                 String addedData = "";
                 addedData = editTextData.getText().toString();
                 int imageid = -1;
@@ -99,7 +102,7 @@ public class EditNoteActivity extends AppCompatActivity {
                     second = "0";
                 }
 
-                int c = db.updateText(id, addedData, imageid, group, pin, hour, minute, second);
+                int c = db.updateText(type, id, addedData, imageid, group, pin, hour, minute, second);
 
                 Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();

@@ -19,6 +19,7 @@ public class NoteModel {
     private String second;
 
     public NoteModel(int type, int id, String t, String grp, boolean isPin, String hr, String min, String sec) {
+        setType(type);
         setId(id);
         setText(t);
         setGroup(grp);
@@ -29,6 +30,7 @@ public class NoteModel {
     }
 
     public NoteModel(int type, int id, ArrayList<String> t, String grp, boolean isPin) {
+        setType(type);
         setId(id);
         setCheckList(t);
         setGroup(grp);
@@ -36,6 +38,7 @@ public class NoteModel {
     }
 
     public NoteModel(int type, int id, int imageId, String grp, boolean isPin, String hr, String min, String sec) {
+        setType(type);
         setId(id);
         setImageId(imageId);
         setGroup(grp);

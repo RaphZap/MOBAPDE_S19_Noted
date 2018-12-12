@@ -131,17 +131,22 @@ class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             switch (object.getType()){
                 case NoteModel.NOTE_TYPE:
                     ((NoteHolder)holder).setTextNote(noteList.get(position).getText());
-                    ((NoteHolder)holder).setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
+                    ((NoteHolder)holder).setGroupLabel(noteList.get(position).getGroup());
                     ((NoteHolder)holder).setPin(noteList.get(position).isPinned());
                     ((NoteHolder)holder).setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
+                    break;
                 case NoteModel.CHECK_TYPE:
-                    ((CheckListHolder)holder).setTextNote(noteList.get(position).getText());
-                    ((CheckListHolder)holder).setTextNote(noteList.get(position).getText());
-                    ((CheckListHolder)holder).setGroupLabel(noteList.get(position).getGroup());  // TODO: set group
+                    ((CheckListHolder)holder).setGroupLabel(noteList.get(position).getGroup());
                     ((CheckListHolder)holder).setPin(noteList.get(position).isPinned());
-                    ((CheckListHolder)holder).setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
-            }
-        }
+                    break;
+                case NoteModel.IMG_TYPE:
+                    ((ImgHolder)holder).setGroupLabel(noteList.get(position).getGroup());
+                    ((ImgHolder)holder).setPin(noteList.get(position).isPinned());
+                    ((ImgHolder)holder).setTime(noteList.get(position).getHour(), noteList.get(position).getMinute(), noteList.get(position).getSecond());
+                    ((ImgHolder)holder).setImg(noteList.get(position).getImageId());
+                    break;
+            } // end of switch statement
+        } // end of if statement
     }
 
     @Override
@@ -156,8 +161,8 @@ class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return 1;
     }
 
-    public void addItem(int uid, String text, int img, String grp, boolean isPinned, String hour, String minute, String second){
-        noteList.add(new NoteModel(uid, text, img, grp, isPinned, hour, minute, second));
+    public void addItem(int type, int uid, String text, int img, String grp, boolean isPinned, String hour, String minute, String second){
+        noteList.add(new NoteModel(type, uid, text, grp, isPinned, hour, minute, second));
         notifyItemInserted(noteList.size()-1);
         Log.d("NOTE ADAPTER ACTIVITY", "Added Item!!!");
     }
