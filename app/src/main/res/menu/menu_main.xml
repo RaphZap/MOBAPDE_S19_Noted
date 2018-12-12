@@ -10,9 +10,6 @@
         android:title="@string/menu_deletenote"
         android:background="@android:color/holo_blue_dark" />
     <item
-        android:id="@+id/menu_sort"
-        android:title="@string/menu_sort" />
-    <item
         android:id="@+id/menu_settings"
         android:title="@string/menu_settings" />
     <item

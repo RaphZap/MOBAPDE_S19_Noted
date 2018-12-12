@@ -8,12 +8,12 @@
     <string name="menu_editnote">Edit Note</string>
     <string name="menu_deletenote">Delete ALL Notes!!!</string>
     <string name="menu_sort">Sort By ???</string>
-    <string name="menu_settings">Settings (view db)</string>
+    <string name="menu_settings">View DB</string>
     <string name="menu_about">About Us</string>
 
     <string name="hint_note">Note...</string>
     <string name="hint_label">Label(s)</string>
-    <string name="hint_color">Color ?</string>
+    <string name="hint_color">Color</string>
     <string name="hint_hour">Hour</string>
     <string name="hint_minute">Minute</string>
     <string name="hint_second">Second</string>

@@ -51,11 +51,6 @@ public class MainActivity extends AppCompatActivity {
         btnCamera = findViewById(R.id.btnCamera);
         btnCamera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),
-                        "Your pic has been taken! JK",
-                        Toast.LENGTH_SHORT).show();
-
-                // TODO: Add Camera function here.
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
 
@@ -77,30 +72,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_PIC_REQUEST) {
-            Bitmap img = (Bitmap) data.getExtras().get("data");
-            String image;
-            image = BitMapToString(img);
-            System.out.println("in onActivityResult");
+        try {
+            if (requestCode == CAMERA_PIC_REQUEST) {
+                Bitmap img = (Bitmap) data.getExtras().get("data");
+                String image;
+                image = BitMapToString(img);
+                System.out.println("in onActivityResult");
 
-            myDbAdapter db = new myDbAdapter(getApplicationContext());
-            long id = db.insertData(NoteModel.IMG_TYPE, "", image, "", false, "0", "0", "0");
-            if (id > 0) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Note added!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                myDbAdapter db = new myDbAdapter(getApplicationContext());
+                long id = db.insertData(NoteModel.IMG_TYPE, "", image, "", false, "0", "0", "0");
+                if (id > 0) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Note added!",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
 
-                // Close activity
+                    // Close activity
 //                finish();
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "ERROR! not addded!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "ERROR! not addded!",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
 
+                }
             }
+        }catch (Exception e) {
+            Log.d("onActivityResult", "e: "+e);
         }
+
     }
 
     public String BitMapToString(Bitmap bitmap){
@@ -147,13 +147,13 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 return true;
-            case R.id.menu_sort:
-                Log.d("MENU_DIALOG","SORT NOTE");
-                toast = Toast.makeText(getApplicationContext(),
-                        "Implement SORT NOTE!!!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
-                return true;
+//            case R.id.menu_sort:
+//                Log.d("MENU_DIALOG","SORT NOTE");
+//                toast = Toast.makeText(getApplicationContext(),
+//                        "Implement SORT NOTE!!!",
+//                        Toast.LENGTH_SHORT);
+//                toast.show();
+//                return true;
             case R.id.menu_settings:
                 Log.d("MENU_DIALOG","SETTINGS");
 
@@ -200,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
 
     // this always calls the db.
     private void loadData() {
-//        dataList.clear();
         adapter.clearItems();
         Cursor cursor = mydb.getAllData();
         if (cursor.moveToFirst()) {
@@ -225,26 +224,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-//        @Override
-//        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
-//            return onLongListItemClick(v,pos,id);
-//        }
-//
-//        protected boolean onLongListItemClick(View v, final int pos, long id) {
-//
-//            AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
-//            alertDialog.setTitle("Delete...");
-//            alertDialog.setMessage("Are you sure?");
-//            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int which) {
-//                    String a=dataList.get(+pos).get(INPUT_COLUMN_ID);
-//                    mydb.deleteSingleContact(a);
-//                    loadData();
-//                }
-//            });
-//            alertDialog.show();
-//            return true;
-//        }});
     }
 
 }

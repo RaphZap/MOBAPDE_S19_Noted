@@ -69,9 +69,9 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         }
         editTextData.setText(text);
-        String item = id +" - " +text +" - " +imageId +" - "
-                +group +" - " +isPinned+" - "+hour+" - " +minute+ " - " +second;
-        Toast.makeText(this, item, Toast.LENGTH_LONG).show();
+//        String item = id +" - " +text +" - " +imageId +" - "
+//                +group +" - " +isPinned+" - "+hour+" - " +minute+ " - " +second;
+//        Toast.makeText(this, item, Toast.LENGTH_LONG).show();
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -84,7 +84,7 @@ public class EditNoteActivity extends AppCompatActivity {
                         cur.moveToNext();
                     }
                 }
-                Toast.makeText(getApplicationContext(),"img: ! "+img, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"img: ! "+img, Toast.LENGTH_SHORT).show();
                 int type = getIntent().getIntExtra("TYPE", 0);
 //                int type = type;
                 String addedData = "";
@@ -109,7 +109,7 @@ public class EditNoteActivity extends AppCompatActivity {
                         int uid = getIntent().getIntExtra("IDKEY", -1);
                         int c = db.deleteByID(uid);
                         Log.d("btnDelete NOTIFICATION","Rows affected: " +c);
-                        Toast.makeText(getApplicationContext(),"Note Deleted! " +c, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"Note Deleted! " +c, Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });

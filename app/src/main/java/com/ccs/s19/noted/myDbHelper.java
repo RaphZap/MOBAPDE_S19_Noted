@@ -42,10 +42,10 @@ public class myDbHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(CREATE_TABLE);
-            Toast toast = Toast.makeText(context,
-                    "Create Table Executed!!!!!",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+//            Toast toast = Toast.makeText(context,
+//                    "Create Table Executed!!!!!",
+//                    Toast.LENGTH_SHORT);
+//            toast.show();
         } catch (Exception e) {
             Toast toast = Toast.makeText(context,
                     "onCreate e: "+e,
@@ -57,10 +57,10 @@ public class myDbHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
-            Toast toast = Toast.makeText(context,
-                    "onUpgrade",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+//            Toast toast = Toast.makeText(context,
+//                    "onUpgrade",
+//                    Toast.LENGTH_SHORT);
+//            toast.show();
 
             db.execSQL(DROP_TABLE);
             onCreate(db);

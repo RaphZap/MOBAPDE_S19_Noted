@@ -106,7 +106,7 @@ class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         +noteList.get(itemPosition).getHour()+" - "
                         +noteList.get(itemPosition).getMinute()+" - "
                         +noteList.get(itemPosition).getSecond();
-                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
+//                Toast.makeText(mainAct, item, Toast.LENGTH_LONG).show();
                 return false;
             }
         });
