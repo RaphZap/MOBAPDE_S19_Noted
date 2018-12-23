@@ -96,7 +96,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
                 int c = db.updateText(type, id, addedData, img, group, pin, "0", "0", "0");
 
-//                Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(),"Editted! "+c, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
